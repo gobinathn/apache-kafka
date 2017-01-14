@@ -1,0 +1,22 @@
+Apache ZooKeeper Installation
+=============================
+>sudo apt-get install zookeeperd
+
+After installation, zookeeper will be running as a service in its default port 2181
+
+To check whether zookeeper is running, execute
+
+netstat -ant | grep :2181
+
+Apache Kafka installation
+=========================
+
+1.Download latest kafka from https://kafka.apache.org/downloads
+2.Extract the binaries into a workspace/kafka folder. 
+3.cd to kafka folder
+4.Start Zookeeper server by executing > bin/zookeeper-server-start.sh config/zookeeper.properties.
+5.Start kafka server by executing > bin/kafka-server-start.sh config/server.properties.
+6.Test topic creation > bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic sampletopic.
+7.Start OOTB kafka consumer console to consume messages published into the sampletopic> bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic sampletopic --from-beginning.
+8.Start OOTB kafka producer console to publish messages into the sampletopic> bin/kafka-console-producer.sh --broker-list localhost:9092 --topic sampletopic.
+9.Type some messages from producer console and you can see them in consumer console
